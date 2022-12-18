@@ -1,0 +1,5 @@
+---
+- hosts: vmtutes
+  become: true
+  tasks:
+   - include: include.yml

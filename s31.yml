@@ -1,0 +1,21 @@
+# this is my first playbook in ansible
+---
+- hosts: vmtutes[0:4]
+  become: true 
+  user: ec2-user
+  connection: ssh
+  gather_facts: yes
+  vars_prompt:
+   - name: devops
+     prompt: plese enter the package name 
+  tasks:
+   - name: printing message
+     raw: echo "hello vmtutes" > /home/vmtutes/v1.log
+  
+   - name: package '{{ devops }}' installation
+     yum: pkg='{{ devops }}' state=present
+     notify: service start
+
+  handlers: 
+   - name: service start
+     service: name=vsftpd state=started

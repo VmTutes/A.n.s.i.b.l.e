@@ -1,0 +1,13 @@
+---
+- hosts: vmtutes
+  become: true
+  tasks:
+    - name: adding list of users
+      user: name={{ item }} state=absent
+      with_items:
+        - user1
+        - user2
+        - user3
+        - git
+        - curl
+        - unzip

@@ -1,0 +1,10 @@
+--- # conditional playbook
+- hosts: vmtutes
+  become: true
+  tasks: 
+    - name: install apache2 for ubuntu
+      action: -y install apache2
+      when: ansible_os_family == "ubuntu"
+    - name: install apache for redhat
+      yum: -y install httpd
+      action: ansible_os_family == "RedHat"

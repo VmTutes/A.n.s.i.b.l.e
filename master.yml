@@ -1,0 +1,5 @@
+---
+- hosts: vmtutes
+  become: true
+  roles:
+   - r1

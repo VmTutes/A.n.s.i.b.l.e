@@ -1,0 +1,20 @@
+--- # outlining to my playbook
+- hosts: vmtutes
+  become: true
+  tasks:
+   - name: Display Date&Time For Begining of Playbook
+     raw: /usr/bin/date  > /home/vmtutes/begin_playbook_timestamp.log
+   - name: Install ftp
+     yum: pkg=ftp state=present
+     notify: restart the ftp
+   - name: install telnet
+     yum: pkg=telnet state=present 
+     async: 459
+     poll: 18
+   - name: moving logs
+     raw: yum list installed > /home/vmtutes/telnet_installed.log
+   - name: Display Date&Time For Ending of Playbook
+     raw: /usr/bin/date  > /home/vmtutes/end_playbook_timestamp.log
+  handlers:
+   - name: restart the ftp
+     action: service name=ftp state=started

@@ -1,0 +1,12 @@
+--- # Tags playbook
+- hosts: vmtutes
+  become: true
+  tasks:
+   - name: enter your name
+     raw: echo "vinodh" > /home/vmtutes/vinodh.log
+     tags:
+      - firstname
+   - name: designation
+     raw: echo "devops_engineer" > /home/vmtutes/vinodh.log
+     tags:
+       - role

@@ -1,0 +1,8 @@
+- hosts: vmtutes
+  become: true
+  tasks:
+    - name: install httpd package
+      yum: pkg=httpd state=present
+    - name: wait for service listening on port 80
+      wait_for:
+       path: /home/vmtutes/vinusahi.log 
